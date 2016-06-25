@@ -21,11 +21,14 @@ idx = zeros(size(X,1), 1);
 % Note: You can use a for-loop over the examples to compute this.
 %
 
+distance = zeros(size(X,1), K);
 
+for i = 1:K
+	diffs = bsxfun(@minus, X, centroids(i,:));
+	distance(:, i) = sum(diffs.^2, 2);
+end
 
-
-
-
+[value, idx] = min(distance, [], 2);
 
 % =============================================================
 
